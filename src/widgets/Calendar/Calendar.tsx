@@ -9,12 +9,11 @@ import {
   Month,
   MonthName,
 } from "../../shared/styles/CalendarStyles";
-import "../../shared/styles/calendar.css";
 
 export default function Calendar() {
   const year = getYearArray(2023);
   return (
-    <div className="year">
+    <div>
       {year.map((month, monthIndex) => (
         <Month>
           <MonthName>{shortMonthNames[monthIndex]}</MonthName>

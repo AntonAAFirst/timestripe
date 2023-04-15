@@ -1,0 +1,120 @@
+/* .modalnotecontainer {
+  position: fixed;
+  background-color: rgba(0, 0, 0, 0.3);
+  width: 100%;
+  left: 0;
+  display: grid;
+  z-index: 300;
+  height: 100%;
+  overflow: auto;
+} */
+/* 
+.modal-note {
+  background-color: #202021;
+  width: 800px;
+  height: max-content;
+  margin: 30px auto;
+  border-radius: 12px;
+  position: relative;
+} */
+/* 
+.modal-note-header {
+  color: rgba(215, 216, 219, 0.7);
+  font-family: "Inter";
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  transform: translate(-50%, -50%);
+} */
+/* 
+.modal-note-date {
+  color: #dc611b;
+  font-family: "Inter";
+  font-size: 16px;
+  position: absolute;
+  left: 50px;
+  top: 60px;
+} */
+
+/* .modal-note-checkbox {
+  position: absolute;
+  left: 20px;
+  top: 120px;
+} */
+
+/* .modal-note-title-input {
+  position: absolute;
+  left: 50px;
+  top: 110px;
+  font-size: 36px;
+  background-color: transparent;
+  border: 0;
+  color: white;
+  font-weight: 500;
+} */
+
+/* .modal-note-title-input:focus {
+  outline: 0;
+} */
+
+/* .modal-note-text-input {
+  resize: none;
+  position: absolute;
+  left: 50px;
+  top: 160px;
+  width: 700px;
+  height: max-content;
+  overflow: auto;
+  background-color: transparent;
+  font-family: "Inter";
+  color: white;
+  font-size: 16px;
+  border: 0;
+} */
+
+/* .modal-note-text-input:focus {
+  outline: 0;
+} */
+
+/* .modal-note-footer-container {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 50px;
+  border-top: 1px solid lightgray;
+}
+
+.modal-note-footer {
+  position: relative;
+  height: 100%;
+} */
+
+/* .modal-note-footer-ok {
+  background-color: white;
+  width: 60px;
+  text-align: center;
+  padding: 4px;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 4px;
+  font-family: "Inter";
+  position: absolute;
+  right: -20px;
+  cursor: pointer;
+} */
+
+.modal-note-footer-ok:hover {
+  opacity: 0.8;
+}
+
+.modal-note-footer-ok:active {
+  opacity: 0.5;
+}
+
+.classmy {
+  width: "150px";
+  /* position: "absolute"; */
+  /* top: "10px";
+  left: "12px"; */
+  border: 4px solid red;
+}

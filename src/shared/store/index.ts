@@ -1,8 +1,12 @@
-import { configureStore } from "@reduxjs/toolkit";
+import modalNoteReducer from "./reducers/modalNoteReducer";
 import testReducer from "./reducers/testReducer";
+import { configureStore } from "@reduxjs/toolkit";
 
 const store = configureStore({
-  reducer: { test: testReducer },
+  reducer: {
+    test: testReducer,
+    modalNote: modalNoteReducer,
+  },
 });
 
 export default store;

@@ -57,10 +57,10 @@ export const DayContainer = styled.div<DayStyledProps>`
   }
 `;
 
+// z-index: 24;
 export const Day = styled.div<DayStyledProps>`
   position: relative;
   border-radius: 50%;
-  z-index: 24;
   height: 100%;
   text-align: center;
   &:hover {

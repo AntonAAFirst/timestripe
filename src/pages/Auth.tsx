@@ -20,6 +20,8 @@ export default function Auth() {
         (await isLoginDataCorrect(name.toLowerCase(), password.toLowerCase()))
       ) {
         navigate(navigatePath);
+      } else if (isLoginLogic) {
+        setInvalidLoginData(true);
       } else if (!isLoginLogic) {
         navigate(navigatePath);
         addUserToFirebase(name, password);
@@ -34,6 +36,7 @@ export default function Auth() {
   const [name, setName] = useState<string>("");
   const [password, setPassword] = useState<string>("");
 
+  const [invalidLoginData, setInvalidLoginData] = useState<boolean>(false);
   useEffect(() => {
     setName("");
     setPassword("");
@@ -49,10 +52,17 @@ export default function Auth() {
             type="text"
             placeholder="Ваше имя"
             value={name}
-            onChange={(e) => setName(e.target.value)}
+            onChange={(e) => {
+              setName(e.target.value);
+              setInvalidLoginData(false);
+            }}
           />
-          <FormFieldInputErrorText active={name.length < 5 && name.length > 0}>
-            Длина имени минимум 5 символов
+          <FormFieldInputErrorText
+            active={(name.length < 5 && name.length > 0) || invalidLoginData}
+          >
+            {invalidLoginData
+              ? "Invalid email or password"
+              : "Длина имени минимум 5 символов"}
           </FormFieldInputErrorText>
         </FormField>
 
@@ -61,7 +71,10 @@ export default function Auth() {
             type="text"
             placeholder="Ваш пароль"
             value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            onChange={(e) => {
+              setPassword(e.target.value);
+              setInvalidLoginData(false);
+            }}
           />
           <FormFieldInputErrorText
             active={password.length < 8 && password.length > 0}

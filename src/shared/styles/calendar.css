@@ -1,0 +1,9 @@
+.calendar-container {
+  background-color: #202021;
+  height: 100vh;
+}
+
+.year {
+  margin-left: 200px;
+  border: 2px solid black;
+}

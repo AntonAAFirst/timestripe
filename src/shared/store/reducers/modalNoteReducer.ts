@@ -1,8 +1,8 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { INoteModal } from "../../models/types";
-import { modalNoteProps } from "../../models/reduxStates";
+import { ModalNoteProps } from "../../models/reduxStates";
 
-const initialState: modalNoteProps = {
+const initialState: ModalNoteProps = {
   id: 0,
   name: "",
   text: [],
@@ -12,7 +12,7 @@ const initialState: modalNoteProps = {
 };
 
 export const modalNoteReducer = createSlice({
-  name: "test",
+  name: "modalNote",
   initialState,
   reducers: {
     openModal: function (state) {
@@ -21,6 +21,7 @@ export const modalNoteReducer = createSlice({
     closeModal: function (state) {
       state.active = false;
     },
+
     newModalState: function (state, action: PayloadAction<INoteModal>) {
       state.id = action.payload.id;
       state.name = action.payload.name;

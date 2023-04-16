@@ -7,12 +7,6 @@ export type IUser = {
   id: number;
 };
 
-export enum NoteType {
-  DayNote,
-  MonthNote,
-  YearNote,
-}
-
 export type INote = {
   id: number;
   name: string;
@@ -21,6 +15,7 @@ export type INote = {
   year: number;
   month: number;
   day: number;
+  noteType: string;
 };
 
 export type INoteModal = {
@@ -30,3 +25,7 @@ export type INoteModal = {
   checkbox: boolean;
   dateString: string;
 };
+
+export const DayNote: string = "DayNote";
+export const MonthNote: string = "MonthNote";
+export const YearNote: string = "YearNote";

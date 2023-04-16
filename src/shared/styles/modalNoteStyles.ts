@@ -1,7 +1,7 @@
 import styled from "styled-components";
-import { setTextRange } from "typescript";
+import { ModalNoteContainerStyledProps } from "../models/props/ModalNoteStyledProps";
 
-export const ModalNoteContainer = styled.div`
+export const ModalNoteContainer = styled.div<ModalNoteContainerStyledProps>`
   position: fixed;
   background-color: rgba(0, 0, 0, 0.3);
   width: 100%;
@@ -10,6 +10,8 @@ export const ModalNoteContainer = styled.div`
   z-index: 300;
   height: 100%;
   overflow: auto;
+  transform: ${(props) => (props.active ? "scale(1)" : "scale(0)")};
+  transition: 0.5s;
 `;
 
 export const ModalNoteContent = styled.div`
@@ -113,13 +115,15 @@ export const ModalNoteFooterOKButton = styled.div`
     opacity: 0.5;
   }
 `;
-//   position: "absolute";
 
-export const ModalNoteFooterTrashIcon = styled.div`
-  top: "10px";
-  left: "12px";
-  width: "25px";
-  border: 4px solid red;
+export const ModalNoteFooterTrashIcon = styled.img`
+  width: max-content;
+  height: 40px;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  left: 30px;
+  position: absolute;
+  cursor: pointer;
 `;
 
 export const ModalNoteDeleteIconContainer = styled.div`
@@ -127,6 +131,7 @@ export const ModalNoteDeleteIconContainer = styled.div`
   right: 12px;
   position: absolute;
   top: 12px;
+  cursor: pointer;
   
   &:hover:after {
      content: attr(data-tooltip);

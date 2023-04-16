@@ -1,5 +1,5 @@
+import { DayStyledProps } from "./../models/props/CalendarSlyledProps";
 import styled from "styled-components";
-import { DayStyledProps } from "../models/props/CalendarSlyledProps";
 
 const date = new Date();
 const nowYear = date.getFullYear();
@@ -25,10 +25,6 @@ export const MonthName = styled.div`
 `;
 
 export const DayContainer = styled.div<DayStyledProps>`
-  color: ${(props) =>
-    props.year === nowYear && props.month === nowMonth && props.day === nowDay
-      ? "red"
-      : "white"};
   font-family: "Inter";
   font-size: 13px;
   font-weight: 700;
@@ -57,11 +53,11 @@ export const DayContainer = styled.div<DayStyledProps>`
   }
 `;
 
-// z-index: 24;
 export const Day = styled.div<DayStyledProps>`
   position: relative;
   border-radius: 50%;
   height: 100%;
+  z-index: 200;
   text-align: center;
   &:hover {
     color: ${(props) =>
@@ -71,4 +67,12 @@ export const Day = styled.div<DayStyledProps>`
     background-color: white;
     cursor: pointer;
   }
+  background-color: ${(props) =>
+    props.active === true ? "white" : "transparent"};
+  color: ${(props) =>
+    props.year === nowYear && props.month === nowMonth && props.day === nowDay
+      ? "red"
+      : props.active
+      ? "black"
+      : "white"};
 `;

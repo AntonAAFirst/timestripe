@@ -42,4 +42,29 @@ export const shortMonthNames: string[] = [
   "Dec",
 ];
 
-export function getDayType(year: number, month: number, day: number) {}
+export const monthNames: string[] = [
+  "January",
+  "February",
+  "March",
+  "April",
+  "May",
+  "June",
+  "Jule",
+  "August",
+  "September",
+  "October",
+  "November",
+  "December",
+];
+
+export function getDateString(
+  year: number,
+  month?: number,
+  day?: number
+): string {
+  return day !== undefined && month !== undefined
+    ? `${monthNames[month]} ${day}, ${year}`
+    : month !== undefined
+    ? `${monthNames[month]} ${year}`
+    : `${year}`;
+}

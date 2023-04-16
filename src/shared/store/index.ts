@@ -1,10 +1,10 @@
 import modalNoteReducer from "./reducers/modalNoteReducer";
-import testReducer from "./reducers/testReducer";
 import { configureStore } from "@reduxjs/toolkit";
+import notesReducer from "./reducers/notesReducer";
 
 const store = configureStore({
   reducer: {
-    test: testReducer,
+    notes: notesReducer,
     modalNote: modalNoteReducer,
   },
 });

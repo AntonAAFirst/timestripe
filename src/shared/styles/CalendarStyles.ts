@@ -76,3 +76,16 @@ export const Day = styled.div<DayStyledProps>`
       ? "black"
       : "white"};
 `;
+
+export const YearInput = styled.input`
+  font-size: 28px;
+  font-family: Inter;
+  border: 0;
+  border-bottom: 2px solid lightgray;
+  width: 70px;
+  background-color: transparent;
+  color: white;
+  &:focus {
+    outline: 0;
+  }
+`;

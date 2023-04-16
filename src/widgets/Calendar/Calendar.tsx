@@ -4,6 +4,7 @@ import {
   getYearArray,
   shortMonthNames,
 } from "../../shared/helpers/calendarHelpers";
+import { CalendarProps } from "../../shared/models/props/CalendarSlyledProps";
 import { DayNote, INote } from "../../shared/models/types";
 import { useAppDispatch, useAppSelector } from "../../shared/store/hooks";
 import {
@@ -19,9 +20,9 @@ import {
   MonthName,
 } from "../../shared/styles/CalendarStyles";
 
-export default function Calendar() {
+export default function Calendar({ year }: CalendarProps) {
   const notes = useAppSelector((state) => state.notes.notes);
-  const year = getYearArray(2023);
+  const yearArray = getYearArray(year);
 
   const dispatch = useAppDispatch();
 
@@ -75,21 +76,24 @@ export default function Calendar() {
 
   return (
     <div>
-      {year.map((month, monthIndex) => (
+      {yearArray.map((month, monthIndex) => (
         <Month>
           <MonthName>{shortMonthNames[monthIndex]}</MonthName>
 
           <Days>
             {month.map((day) => (
-              <DayContainer year={2023} month={monthIndex} day={day}>
+              <DayContainer year={year} month={monthIndex} day={day}>
                 <Day
                   onClick={() => dayClickHandler(monthIndex, day)}
                   active={
                     notes.findIndex(
-                      (note) => note.month === monthIndex && note.day === day
+                      (note) =>
+                        note.month === monthIndex &&
+                        note.day === day &&
+                        note.year === year
                     ) !== -1
                   }
-                  year={2023}
+                  year={year}
                   month={monthIndex}
                   day={day}
                 >

@@ -4,3 +4,12 @@ export interface DayStyledProps {
   day: number;
   active?: boolean;
 }
+
+export interface CalendarInputStyledProps {
+  year: number;
+  setYear: Function;
+}
+
+export interface CalendarProps {
+  year: number;
+}

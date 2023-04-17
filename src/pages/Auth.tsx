@@ -68,7 +68,7 @@ export default function Auth() {
 
         <FormField top={165}>
           <FormFieldInput
-            type="text"
+            type="password"
             placeholder="Ваш пароль"
             value={password}
             onChange={(e) => {

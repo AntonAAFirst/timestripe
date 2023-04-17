@@ -21,6 +21,7 @@ import { useAppDispatch, useAppSelector } from "../../shared/store/hooks";
 import { closeModal } from "../../shared/store/reducers/modalNoteReducer";
 import { newReduxNotes } from "../../shared/store/reducers/notesReducer";
 import { INote } from "../../shared/models/types";
+import { updateNotes } from "../../shared/http";
 
 export default function ModalNote() {
   const textareaRef: any = useRef();
@@ -91,6 +92,20 @@ export default function ModalNote() {
     }
   }
 
+  function deleteNote() {
+    const newNotes: INote[] = reduxNotes.filter((note) => note.id !== reduxId);
+    updateNotes(newNotes);
+    dispatch(newReduxNotes(newNotes));
+    dispatch(closeModal());
+  }
+
+  window.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") {
+      saveToRedux();
+      dispatch(closeModal());
+    }
+  });
+
   return (
     <ModalNoteContainer active={reduxModalActive}>
       <ModalNoteContent ref={modalNote}>
@@ -120,7 +135,11 @@ export default function ModalNote() {
         <ModalNoteFooterContainer>
           <ModalNoteFooter>
             <ModalNoteFooterOKButton onClick={buttonOkHandler} />
-            <ModalNoteFooterTrashIcon src={trashIcon} alt="" />
+            <ModalNoteFooterTrashIcon
+              onClick={deleteNote}
+              src={trashIcon}
+              alt=""
+            />
           </ModalNoteFooter>
         </ModalNoteFooterContainer>
       </ModalNoteContent>

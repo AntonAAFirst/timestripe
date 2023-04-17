@@ -17,5 +17,7 @@ export const Loader = styled.div`
   width: 33px;
   height: 33px;
   animation: ${loaderAnimation} 2s linear infinite;
-  margin: auto auto;
+  position: absolute;
+  top: 30%;
+  left: 47%;
 `;

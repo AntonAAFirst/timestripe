@@ -1,10 +1,10 @@
+import { cookieUserId } from "./shared/models/types";
 import { Routes, Route } from "react-router-dom";
-import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 import CalendarPage from "./pages/CalendarPage";
 import Cookies from "js-cookie";
 import Auth from "./pages/Auth";
-import { cookieUserId } from "./shared/models/types";
 import Layout from "./pages/Layout";
 
 export default function App() {
@@ -20,7 +20,7 @@ export default function App() {
   return (
     <Routes>
       <Route path="auth" element={<Auth />} />
-      <Route path="/kek" element={<Layout />}>
+      <Route path="/" element={<Layout />}>
         <Route path="calendar" element={<CalendarPage />} />
       </Route>
     </Routes>

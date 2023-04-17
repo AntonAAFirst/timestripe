@@ -115,7 +115,14 @@ export const CalendarNoteCard = styled.div`
 `;
 
 export const CalendarNotesListContainer = styled.div`
-  // border: 2px solid green;
   width: max-content;
   margin: 100px auto;
+`;
+
+export const CalendarLogoutIcon = styled.img`
+  position: absolute;
+  width: 30px;
+  right: 15px;
+  top: 15px;
+  cursor: pointer;
 `;

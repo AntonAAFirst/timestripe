@@ -79,6 +79,18 @@ export default function ModalNote() {
     dispatch(closeModal());
   }
 
+  function titleInputHanlder(text: string) {
+    if (title.length < 60) {
+      setTitle(text);
+    }
+  }
+
+  function titleInputKeyDownHandler(key: string) {
+    if (key === "Backspace" && title.length === 60) {
+      setTitle((prev) => prev.slice(0, prev.length - 1));
+    }
+  }
+
   return (
     <ModalNoteContainer active={reduxModalActive}>
       <ModalNoteContent ref={modalNote}>
@@ -94,7 +106,8 @@ export default function ModalNote() {
         />
         <ModalNoteTitleInput
           value={title}
-          onChange={(e) => setTitle(e.target.value)}
+          onChange={(e) => titleInputHanlder(e.target.value)}
+          onKeyDown={(e) => titleInputKeyDownHandler(e.code)}
           type="text"
           placeholder="Title"
         />

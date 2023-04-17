@@ -4,12 +4,16 @@ import { useEffect, useState } from "react";
 import { newReduxNotes } from "../shared/store/reducers/notesReducer";
 import { getIntUserId } from "../shared/helpers";
 import { Loader } from "../shared/styles/LoaderStyles";
-import { INote, IUser } from "../shared/models/types";
+import { INote, IUser, cookieUserId } from "../shared/models/types";
 import { CalendarPageContainer } from "../shared/styles/LayoutStyle";
 import CalendarNotesList from "../widgets/CalendarPage/CalendarNotesList";
 import CalendarInput from "../widgets/CalendarPage/CalendarInput";
 import Calendar from "../widgets/CalendarEntities/Calendar";
 import CalendarFilterOptions from "../widgets/CalendarPage/CalendarFilterOptions";
+import { CalendarLogoutIcon } from "../shared/styles/CalendarStyles";
+import logoutIcon from "../shared/images/logoutIcon.png";
+import Cookies from "js-cookie";
+import { Link } from "react-router-dom";
 
 export default function CalendarPage() {
   const dispatch = useAppDispatch();
@@ -32,7 +36,7 @@ export default function CalendarPage() {
   useEffect(() => {
     setTimeout(() => {
       getNotes();
-    }, 2000);
+    }, 500);
   }, []);
 
   useEffect(() => {
@@ -49,12 +53,19 @@ export default function CalendarPage() {
 
   const [filteredNotes, setFilteredNotes] = useState<INote[]>([]);
 
+  function logout() {
+    Cookies.remove(cookieUserId);
+  }
+
   return (
     <CalendarPageContainer>
       {isLoading ? (
         <Loader />
       ) : (
         <>
+          <Link to="../auth">
+            <CalendarLogoutIcon onClick={logout} src={logoutIcon} />
+          </Link>
           <CalendarInput />
           <Calendar />
           <CalendarFilterOptions

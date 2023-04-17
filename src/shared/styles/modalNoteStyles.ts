@@ -56,7 +56,7 @@ export const ModalNoteTitleInput = styled.input`
   border: 0;
   color: white;
   font-weight: 500;
-
+  width: 700px;
   &:focus {
     outline: 0;
   }

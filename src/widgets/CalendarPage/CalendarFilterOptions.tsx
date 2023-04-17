@@ -11,7 +11,6 @@ import {
   YearFilter,
   YearFilterText,
 } from "../../shared/styles/CalendarFilterOptionsStyles";
-import "../../shared/styles/my.css";
 import { useState, useEffect } from "react";
 import { CalendarFilterOptionsProps } from "../../shared/models/props/CalendarProps";
 import { useAppSelector } from "../../shared/store/hooks";

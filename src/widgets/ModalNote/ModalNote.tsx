@@ -87,7 +87,11 @@ export default function ModalNote() {
           <ModalNoteDeleteIcon src={deleteIcon} />
         </ModalNoteDeleteIconContainer>
         <ModalNoteDate>{reduxDateString}</ModalNoteDate>
-        <ModalNoteCheckbox type="checkbox" />
+        <ModalNoteCheckbox
+          type="checkbox"
+          checked={checkbox}
+          onChange={() => setCheckBox((prev) => !prev)}
+        />
         <ModalNoteTitleInput
           value={title}
           onChange={(e) => setTitle(e.target.value)}

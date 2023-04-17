@@ -4,12 +4,12 @@ import { useEffect, useState } from "react";
 import { newReduxNotes } from "../shared/store/reducers/notesReducer";
 import { getIntUserId } from "../shared/helpers";
 import { Loader } from "../shared/styles/LoaderStyles";
-import { IUser } from "../shared/models/types";
-import CalendarNotesList from "../widgets/Calendar/CalendarNotesList";
-import CalendarInput from "../widgets/Calendar/CalendarInput";
-import Calendar from "../widgets/Calendar/Calendar";
-import CalendarFilterOptions from "../widgets/Calendar/CalendarFilterOptions";
+import { INote, IUser } from "../shared/models/types";
 import { CalendarPageContainer } from "../shared/styles/LayoutStyle";
+import CalendarNotesList from "../widgets/CalendarPage/CalendarNotesList";
+import CalendarInput from "../widgets/CalendarPage/CalendarInput";
+import Calendar from "../widgets/CalendarEntities/Calendar";
+import CalendarFilterOptions from "../widgets/CalendarPage/CalendarFilterOptions";
 
 export default function CalendarPage() {
   const dispatch = useAppDispatch();
@@ -41,7 +41,13 @@ export default function CalendarPage() {
     }
   }, [modalActive]);
 
-  const [thisYear, setThisYear] = useState<number>(new Date().getFullYear());
+  useEffect(() => {
+    if (!isLoading) {
+      setFilteredNotes(notes.filter((note, i) => i !== 0));
+    }
+  }, [isLoading]);
+
+  const [filteredNotes, setFilteredNotes] = useState<INote[]>([]);
 
   return (
     <CalendarPageContainer>
@@ -49,10 +55,13 @@ export default function CalendarPage() {
         <Loader />
       ) : (
         <>
-          <CalendarInput year={thisYear} setYear={setThisYear} />
-          <Calendar year={thisYear} />
-          <CalendarFilterOptions />
-          {/* <CalendarNotesList filteredNotes={notes} /> */}
+          <CalendarInput />
+          <Calendar />
+          <CalendarFilterOptions
+            filteringNotes={filteredNotes}
+            setFilteringNotes={setFilteredNotes}
+          />
+          <CalendarNotesList filteredNotes={filteredNotes} />
         </>
       )}
     </CalendarPageContainer>

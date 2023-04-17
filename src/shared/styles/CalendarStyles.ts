@@ -107,8 +107,15 @@ export const CalendarNoteCard = styled.div`
   display: grid;
   cursor: pointer;
   grid-template-columns: 50px 1fr;
-  width: max-content;
+  width: 100%;
+
   &:hover {
     background-color: rgba(0, 0, 0, 0.25);
   }
+`;
+
+export const CalendarNotesListContainer = styled.div`
+  // border: 2px solid green;
+  width: max-content;
+  margin: 100px auto;
 `;

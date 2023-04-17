@@ -2,7 +2,7 @@ import {
   getDateString,
   monthNames,
 } from "../../shared/helpers/calendarHelpers";
-import { CalendarNotesListProps } from "../../shared/models/props/CalendarProps";
+import { CalendarNoteCardItemProps } from "../../shared/models/props/CalendarProps";
 import { INote } from "../../shared/models/types";
 import { useAppDispatch } from "../../shared/store/hooks";
 import {
@@ -11,9 +11,9 @@ import {
 } from "../../shared/store/reducers/modalNoteReducer";
 import { CalendarNoteCard } from "../../shared/styles/CalendarStyles";
 
-export default function CalendarNotesList({
-  filteredNotes,
-}: CalendarNotesListProps) {
+export default function CalendarNoteCardItem({
+  note,
+}: CalendarNoteCardItemProps) {
   const dispatch = useAppDispatch();
 
   function clickHandler(noteObject: INote) {
@@ -23,7 +23,11 @@ export default function CalendarNotesList({
         name: noteObject.name,
         checkbox: noteObject.checkbox,
         text: noteObject.text,
-        dateString: getDateString(2023, noteObject.month, noteObject.day),
+        dateString: getDateString(
+          noteObject.year,
+          noteObject.month,
+          noteObject.day
+        ),
       })
     );
 
@@ -31,13 +35,9 @@ export default function CalendarNotesList({
   }
 
   return (
-    <div>
-      {filteredNotes.map((note) => (
-        <CalendarNoteCard onClick={() => clickHandler(note)}>
-          <div style={{ color: "#dc611b" }}>{note.year}</div>
-          {monthNames[note.month]}, {note.day} - {note.name}
-        </CalendarNoteCard>
-      ))}
-    </div>
+    <CalendarNoteCard onClick={() => clickHandler(note)}>
+      <div style={{ color: "#dc611b" }}>{note.year}</div>
+      {monthNames[note.month]}, {note.day} - {note.name}
+    </CalendarNoteCard>
   );
 }

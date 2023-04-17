@@ -1,3 +1,5 @@
+import { INote, SortingTypes } from "../models/types";
+
 export function getMonthArray(day: number): number[] {
   let monthArray: number[] = [];
 
@@ -67,4 +69,51 @@ export function getDateString(
     : month !== undefined
     ? `${monthNames[month]} ${year}`
     : `${year}`;
+}
+
+export function GeneralDaysSorting(
+  List: INote[],
+  sortingType: SortingTypes
+): any {
+  if (List.length <= 1) {
+    return List;
+  }
+
+  const pivot = List[List.length - 1];
+  const leftList = [];
+  const rightList = [];
+
+  for (let i = 0; i < List.length - 1; i++) {
+    if (List[i].year > pivot.year) {
+      leftList.push(List[i]);
+    } else if (List[i].year === pivot.year) {
+      if (List[i].month > pivot.month) {
+        leftList.push(List[i]);
+      } else if (List[i].month === pivot.month) {
+        if (List[i].day > pivot.day) {
+          leftList.push(List[i]);
+        } else {
+          rightList.push(List[i]);
+        }
+      } else {
+        rightList.push(List[i]);
+      }
+    } else {
+      rightList.push(List[i]);
+    }
+  }
+
+  if (sortingType === SortingTypes.Ascending) {
+    return [
+      ...GeneralDaysSorting(leftList, sortingType),
+      pivot,
+      ...GeneralDaysSorting(rightList, sortingType),
+    ];
+  } else {
+    return [
+      ...GeneralDaysSorting(rightList, sortingType),
+      pivot,
+      ...GeneralDaysSorting(leftList, sortingType),
+    ];
+  }
 }

@@ -1,14 +1,18 @@
-import { CalendarInputStyledProps } from "../../shared/models/styles/CalendarSlyledProps";
 import { useState, useRef } from "react";
 import { YearInput } from "../../shared/styles/CalendarStyles";
+import { useAppDispatch, useAppSelector } from "../../shared/store/hooks";
+import { newSelectedYear } from "../../shared/store/reducers/notesReducer";
 
-export default function CalendarInput({
-  year,
-  setYear,
-}: CalendarInputStyledProps) {
-  const [yearInputValue, setYearInputValue] = useState<string>(year.toString());
+export default function CalendarInput() {
+  const reduxYear = useAppSelector((state) => state.notes.selectedYear);
+
+  const [yearInputValue, setYearInputValue] = useState<string>(
+    reduxYear.toString()
+  );
   const thisYear: number = new Date().getFullYear();
   const yearInputRef: any = useRef();
+
+  const dispatch = useAppDispatch();
 
   function onKeyDownHandler(key: string) {
     if (Number.isInteger(parseInt(key)) && yearInputValue.length <= 3) {
@@ -21,10 +25,10 @@ export default function CalendarInput({
         parseInt(yearInputValue) > 1900 &&
         parseInt(yearInputValue) < 2100
       ) {
-        setYear(parseInt(yearInputValue));
+        dispatch(newSelectedYear(parseInt(yearInputValue)));
       } else {
         setYearInputValue(thisYear.toString());
-        setYear(thisYear);
+        dispatch(newSelectedYear(thisYear));
       }
 
       yearInputRef.current.blur();

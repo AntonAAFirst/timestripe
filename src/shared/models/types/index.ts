@@ -26,6 +26,11 @@ export type INoteModal = {
   dateString: string;
 };
 
+export enum SortingTypes {
+  Descending,
+  Ascending,
+}
+
 export const DayNote: string = "DayNote";
 export const MonthNote: string = "MonthNote";
 export const YearNote: string = "YearNote";

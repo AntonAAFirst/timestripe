@@ -5,14 +5,13 @@ import CalendarPage from "./pages/CalendarPage";
 import Cookies from "js-cookie";
 import Auth from "./pages/Auth";
 import { cookieUserId } from "./shared/models/types";
-import ModalNote from "./widgets/ModalNote/ModalNote";
 import Layout from "./pages/Layout";
 
 export default function App() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const isLogin = Cookies.get(cookieUserId);
+    const isLogin: string | undefined = Cookies.get(cookieUserId);
     if (isLogin === undefined) {
       navigate("/auth");
     }

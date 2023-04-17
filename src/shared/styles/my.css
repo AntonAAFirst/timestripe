@@ -1,0 +1,5 @@
+.myclass {
+  width: max-content;
+  position: relative;
+  grid-template-columns: max-content max-content max-content;
+}

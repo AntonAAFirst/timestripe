@@ -9,7 +9,3 @@ export interface CalendarInputStyledProps {
   year: number;
   setYear: Function;
 }
-
-export interface CalendarProps {
-  year: number;
-}

@@ -3,7 +3,7 @@ import {
   FormFieldInputErrorTextStyledProps,
   FormFieldStyledProps,
   FormUITextStyledProps,
-} from "../models/props/AuthStyledProps";
+} from "../models/styles/AuthStyledProps";
 
 export const AuthContainer = styled.div`
   display: grid;

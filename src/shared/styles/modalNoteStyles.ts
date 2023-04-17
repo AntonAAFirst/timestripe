@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { ModalNoteContainerStyledProps } from "../models/props/ModalNoteStyledProps";
+import { ModalNoteContainerStyledProps } from "../models/styles/ModalNoteStyledProps";
 
 export const ModalNoteContainer = styled.div<ModalNoteContainerStyledProps>`
   position: fixed;

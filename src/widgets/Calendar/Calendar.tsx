@@ -4,7 +4,7 @@ import {
   getYearArray,
   shortMonthNames,
 } from "../../shared/helpers/calendarHelpers";
-import { CalendarProps } from "../../shared/models/props/CalendarSlyledProps";
+import { CalendarProps } from "../../shared/models/props/CalendarProps";
 import { DayNote, INote } from "../../shared/models/types";
 import { useAppDispatch, useAppSelector } from "../../shared/store/hooks";
 import {
@@ -13,6 +13,7 @@ import {
 } from "../../shared/store/reducers/modalNoteReducer";
 import { newReduxNotes } from "../../shared/store/reducers/notesReducer";
 import {
+  CalendarContainer,
   Day,
   DayContainer,
   Days,
@@ -66,7 +67,7 @@ export default function Calendar({ year }: CalendarProps) {
           name: foundObject.name,
           checkbox: foundObject.checkbox,
           text: foundObject.text,
-          dateString: getDateString(2023, month, day),
+          dateString: getDateString(year, month, day),
         })
       );
 
@@ -75,7 +76,7 @@ export default function Calendar({ year }: CalendarProps) {
   }
 
   return (
-    <div>
+    <CalendarContainer>
       {yearArray.map((month, monthIndex) => (
         <Month>
           <MonthName>{shortMonthNames[monthIndex]}</MonthName>
@@ -104,6 +105,6 @@ export default function Calendar({ year }: CalendarProps) {
           </Days>
         </Month>
       ))}
-    </div>
+    </CalendarContainer>
   );
 }

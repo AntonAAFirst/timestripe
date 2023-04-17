@@ -1,4 +1,4 @@
-import { CalendarInputStyledProps } from "../../shared/models/props/CalendarSlyledProps";
+import { CalendarInputStyledProps } from "../../shared/models/styles/CalendarSlyledProps";
 import { useState, useRef } from "react";
 import { YearInput } from "../../shared/styles/CalendarStyles";
 
@@ -11,7 +11,7 @@ export default function CalendarInput({
   const yearInputRef: any = useRef();
 
   function onKeyDownHandler(key: string) {
-    if (Number.isInteger(parseInt(key))) {
+    if (Number.isInteger(parseInt(key)) && yearInputValue.length <= 3) {
       setYearInputValue((prev) => prev + key);
     } else if (key === "Backspace") {
       setYearInputValue((prev) => prev.slice(0, prev.length - 1));

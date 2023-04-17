@@ -20,6 +20,7 @@ import {
 import { useAppDispatch, useAppSelector } from "../../shared/store/hooks";
 import { closeModal } from "../../shared/store/reducers/modalNoteReducer";
 import { newReduxNotes } from "../../shared/store/reducers/notesReducer";
+import { INote } from "../../shared/models/types";
 
 export default function ModalNote() {
   const textareaRef: any = useRef();
@@ -50,10 +51,6 @@ export default function ModalNote() {
   }, [text]);
 
   useEffect(() => {
-    // saveToRedux();
-  }, [title]);
-
-  useEffect(() => {
     setTitle(reduxName);
     setText(reduxText.join("\n"));
     setCheckBox(reduxCheckbox);
@@ -65,7 +62,7 @@ export default function ModalNote() {
       (note) => note.id === reduxId
     );
 
-    let newNoteObject = { ...newNotes[noteIndex] };
+    let newNoteObject: INote = { ...newNotes[noteIndex] };
 
     newNotes = newNotes.filter((note) => note.id !== reduxId);
 

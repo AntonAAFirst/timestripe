@@ -1,10 +1,19 @@
-import { DayStyledProps } from "./../models/props/CalendarSlyledProps";
+import { DayStyledProps } from "../models/styles/CalendarSlyledProps";
 import styled from "styled-components";
 
 const date = new Date();
 const nowYear = date.getFullYear();
 const nowMonth = date.getMonth();
 const nowDay = date.getDate();
+
+export const CalendarContainer = styled.div`
+  width: max-content;
+  height: max-content;
+  padding-top: 50px;
+  padding-bottom: 70px;
+  margin: 0 auto;
+  // border: 2px solid blue;
+`;
 
 export const Days = styled.div`
   display: flex;
@@ -21,7 +30,6 @@ export const MonthName = styled.div`
   font-family: "Inter";
   font-size: 14px;
   font-weight: 700;
-  // border: 2px solid red;
 `;
 
 export const DayContainer = styled.div<DayStyledProps>`
@@ -83,9 +91,24 @@ export const YearInput = styled.input`
   border: 0;
   border-bottom: 2px solid lightgray;
   width: 70px;
+  margin: auto auto;
   background-color: transparent;
   color: white;
   &:focus {
     outline: 0;
+  }
+`;
+
+export const CalendarNoteCard = styled.div`
+  border-bottom: 2px solid lightgray;
+  font-family: "Inter";
+  color: white;
+  padding: 16px;
+  display: grid;
+  cursor: pointer;
+  grid-template-columns: 50px 1fr;
+  width: max-content;
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.25);
   }
 `;

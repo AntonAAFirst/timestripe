@@ -16,7 +16,7 @@ import { useState, useEffect } from "react";
 import { CalendarFilterOptionsProps } from "../../shared/models/props/CalendarProps";
 import { useAppSelector } from "../../shared/store/hooks";
 import { GeneralDaysSorting } from "../../shared/helpers/calendarHelpers";
-import { SortingTypes } from "../../shared/models/types";
+import { INote, SortingTypes } from "../../shared/models/types";
 
 export default function CalendarFilterOptions({
   filteringNotes,
@@ -26,7 +26,7 @@ export default function CalendarFilterOptions({
   const [thisYear, setThisYear] = useState<boolean>(false);
   const [sortingState, setSortingState] = useState<boolean>(false);
 
-  const currentYear = useAppSelector((state) => state.notes.selectedYear);
+  const currentYear = new Date().getFullYear();
   const notes = useAppSelector((state) => state.notes.notes);
 
   useEffect(() => {
@@ -39,7 +39,22 @@ export default function CalendarFilterOptions({
         i !== 0 &&
         note.name.toLowerCase().includes(searchInputValue.toLowerCase())
     );
-    setFilteringNotes(filteredNotes);
+
+    if (thisYear) {
+      setFilteringNotes(
+        GeneralDaysSorting(
+          filteredNotes,
+          !sortingState ? SortingTypes.Ascending : SortingTypes.Descending
+        ).filter((note: INote) => note.year === currentYear)
+      );
+    } else {
+      setFilteringNotes(
+        GeneralDaysSorting(
+          filteredNotes,
+          !sortingState ? SortingTypes.Ascending : SortingTypes.Descending
+        )
+      );
+    }
   }
 
   function inputKeyHandler(key: string) {
@@ -61,11 +76,8 @@ export default function CalendarFilterOptions({
   function thisYearHandler() {
     setThisYear((prev) => !prev);
     if (!thisYear) {
-      const filteredNotes = notes.filter(
-        (note, i) =>
-          i !== 0 &&
-          note.name.toLowerCase().includes(searchInputValue.toLowerCase()) &&
-          note.year === currentYear
+      const filteredNotes = filteringNotes.filter(
+        (note, i) => note.year === currentYear
       );
       setFilteringNotes(filteredNotes);
     } else {

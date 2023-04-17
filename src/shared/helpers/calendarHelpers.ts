@@ -74,7 +74,7 @@ export function getDateString(
 export function GeneralDaysSorting(
   List: INote[],
   sortingType: SortingTypes
-): any {
+): INote[] {
   if (List.length <= 1) {
     return List;
   }

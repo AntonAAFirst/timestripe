@@ -12,7 +12,7 @@ export function addUserToFirebase(name: string, passsword: string) {
     defaultRequest.post("users.json", {
       name: name,
       password: passsword,
-      notes: [1],
+      notes: [{ name: "nothing", id: 14 }],
       id: userId,
     });
   }

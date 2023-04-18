@@ -21,6 +21,7 @@ export default function CalendarPage() {
     const users: IUser[] = await getUsers();
 
     for (let user in users) {
+      console.log("in calendar page - ", users[user]);
       if (users[user].id === getIntUserId()) {
         dispatch(newReduxNotes(users[user].notes));
       }
@@ -40,7 +41,9 @@ export default function CalendarPage() {
 
   useEffect(() => {
     if (!isLoading) {
-      updateNotes(notes);
+      setTimeout(() => {
+        updateNotes(notes);
+      }, 1000);
     }
   }, [modalActive]);
 

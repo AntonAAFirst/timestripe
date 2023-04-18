@@ -3,17 +3,21 @@ import { defaultRequest, getUsers } from ".";
 import { getRandomBigInt } from "../helpers";
 import { IUser, cookieUserId } from "../models/types";
 
-export function addUserToFirebase(name: string, passsword: string) {
+export async function addUserToFirebase(name: string, passsword: string) {
   const userId = getRandomBigInt();
 
   Cookies.set(cookieUserId, userId.toString());
 
-  defaultRequest.post("users.json", {
+  let users = await getUsers();
+
+  users.push({
     name: name,
     password: passsword,
-    notes: [{ name: "nothing", id: 14 }],
+    notes: [{ name: name, id: userId, password: passsword, notes: [0] }],
     id: userId,
   });
+
+  await defaultRequest.put("users.json", users);
 }
 
 export async function isLoginDataCorrect(

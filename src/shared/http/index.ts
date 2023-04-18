@@ -29,11 +29,15 @@ export async function updateNotes(notes: INote[]) {
 
   const userId: number = getIntUserId();
 
+  let userIndexInFirebase;
+
   for (let user in users) {
     if (users[user].id === userId) {
-      users[user].notes = notes;
+      // users[user].notes = notes;
+      userIndexInFirebase = user;
     }
   }
 
-  defaultRequest.put("/users.json", users);
+  defaultRequest.put(`/users/${userIndexInFirebase}/notes.json`, notes);
+  // defaultRequest.put("/users.json", users);
 }

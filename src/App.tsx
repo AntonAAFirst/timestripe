@@ -12,10 +12,11 @@ export default function App() {
 
   useEffect(() => {
     const isLogin: string | undefined = Cookies.get(cookieUserId);
+    console.log(Cookies.get(cookieUserId));
     if (isLogin === undefined) {
       navigate("/");
     } else {
-      navigate("/calendar");
+      // navigate("/calendar");
     }
   }, []);
 

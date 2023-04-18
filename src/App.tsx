@@ -13,7 +13,7 @@ export default function App() {
   useEffect(() => {
     const isLogin: string | undefined = Cookies.get(cookieUserId);
     if (isLogin === undefined) {
-      navigate("/auth");
+      navigate("/");
     }
   }, []);
 

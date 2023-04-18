@@ -33,7 +33,9 @@ export default function CalendarPage() {
   const modalActive = useAppSelector((state) => state.modalNote.active);
 
   useEffect(() => {
-    getNotes();
+    setTimeout(() => {
+      getNotes();
+    }, 1500);
   }, []);
 
   useEffect(() => {

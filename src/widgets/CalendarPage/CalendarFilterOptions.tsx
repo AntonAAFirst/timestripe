@@ -12,45 +12,49 @@ import {
   YearFilterText,
 } from "../../shared/styles/CalendarFilterOptionsStyles";
 import { useState, useEffect } from "react";
-import { CalendarFilterOptionsProps } from "../../shared/models/props/CalendarProps";
-import { useAppSelector } from "../../shared/store/hooks";
+import { useAppDispatch, useAppSelector } from "../../shared/store/hooks";
 import { GeneralDaysSorting } from "../../shared/helpers/calendarHelpers";
-import { INote, SortingTypes } from "../../shared/models/types";
+import { SortingTypes } from "../../shared/models/types";
+import { newFilteredReduxNotes } from "../../shared/store/reducers/notesReducer";
 
-export default function CalendarFilterOptions({
-  filteringNotes,
-  setFilteringNotes,
-}: CalendarFilterOptionsProps) {
+export default function CalendarFilterOptions() {
   const [searchInputValue, setSearchInputValue] = useState<string>("");
   const [thisYear, setThisYear] = useState<boolean>(false);
-  const [sortingState, setSortingState] = useState<boolean>(false);
+
+  const [sortingState, setSortingState] = useState<SortingTypes>(
+    SortingTypes.Ascending
+  );
 
   const currentYear = new Date().getFullYear();
   const notes = useAppSelector((state) => state.notes.notes);
+
+  const filteredReduxNotes = useAppSelector(
+    (state) => state.notes.filteredNotes
+  );
 
   useEffect(() => {
     filterNotes();
   }, [notes]);
 
+  const dispatch = useAppDispatch();
+
   function filterNotes() {
-    const filteredNotes = notes.filter(
+    let filteredNotes = notes.filter(
       (note, i) =>
         i !== 0 &&
         note.name.toLowerCase().includes(searchInputValue.toLowerCase())
     );
 
     if (thisYear) {
-      setFilteringNotes(
-        GeneralDaysSorting(
-          filteredNotes,
-          !sortingState ? SortingTypes.Ascending : SortingTypes.Descending
-        ).filter((note: INote) => note.year === currentYear)
-      );
+      filteredNotes = filteredNotes.filter((note) => note.year === currentYear);
+    }
+
+    if (sortingState === SortingTypes.Ascending) {
+      dispatch(newFilteredReduxNotes(filteredNotes));
     } else {
-      setFilteringNotes(
-        GeneralDaysSorting(
-          filteredNotes,
-          !sortingState ? SortingTypes.Ascending : SortingTypes.Descending
+      dispatch(
+        newFilteredReduxNotes(
+          GeneralDaysSorting(filteredNotes, SortingTypes.Descending)
         )
       );
     }
@@ -63,26 +67,35 @@ export default function CalendarFilterOptions({
   }
 
   function sortingHanlder() {
-    setSortingState((prev) => !prev);
+    const oppositeSortingType: SortingTypes =
+      sortingState === SortingTypes.Ascending
+        ? SortingTypes.Descending
+        : SortingTypes.Ascending;
 
-    const sortingType: SortingTypes = sortingState
-      ? SortingTypes.Ascending
-      : SortingTypes.Descending;
+    dispatch(
+      newFilteredReduxNotes(
+        GeneralDaysSorting(filteredReduxNotes, oppositeSortingType)
+      )
+    );
 
-    setFilteringNotes(GeneralDaysSorting(filteringNotes, sortingType));
+    setSortingState(oppositeSortingType);
   }
 
   function thisYearHandler() {
     setThisYear((prev) => !prev);
-    if (!thisYear) {
-      const filteredNotes = filteringNotes.filter(
-        (note, i) => note.year === currentYear
+  }
+
+  useEffect(() => {
+    if (thisYear) {
+      const filteredNotesByThisYear = filteredReduxNotes.filter(
+        (note) => note.year === currentYear
       );
-      setFilteringNotes(filteredNotes);
+
+      dispatch(newFilteredReduxNotes(filteredNotesByThisYear));
     } else {
       filterNotes();
     }
-  }
+  }, [thisYear]);
 
   return (
     <FilterOptionsContainer>

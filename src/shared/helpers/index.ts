@@ -1,6 +1,5 @@
-import { Day } from "./../styles/CalendarStyles";
 import Cookies from "js-cookie";
-import { DayNote, INote, cookieUserId } from "../models/types";
+import { INote, cookieUserId } from "../models/types";
 
 export function getRandomBigInt() {
   return Math.floor(Math.random() * 1000000);
@@ -23,6 +22,5 @@ export function getNoteTemplate(
     year: year,
     month: month,
     day: day,
-    noteType: DayNote,
   };
 }

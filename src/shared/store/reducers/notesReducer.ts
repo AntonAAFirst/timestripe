@@ -4,6 +4,7 @@ import { INote } from "../../models/types";
 
 const initialState: NotesProps = {
   notes: [],
+  filteredNotes: [],
   isLoading: true,
   selectedYear: 2023,
 };
@@ -19,9 +20,13 @@ export const notesReducer = createSlice({
     newSelectedYear: function (state, action: PayloadAction<number>) {
       state.selectedYear = action.payload;
     },
+    newFilteredReduxNotes: function (state, action: PayloadAction<INote[]>) {
+      state.filteredNotes = action.payload;
+    },
   },
 });
 
-export const { newReduxNotes, newSelectedYear } = notesReducer.actions;
+export const { newReduxNotes, newSelectedYear, newFilteredReduxNotes } =
+  notesReducer.actions;
 
 export default notesReducer.reducer;

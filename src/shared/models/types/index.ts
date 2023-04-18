@@ -15,7 +15,6 @@ export type INote = {
   year: number;
   month: number;
   day: number;
-  noteType: string;
 };
 
 export type INoteModal = {
@@ -30,7 +29,3 @@ export enum SortingTypes {
   Descending,
   Ascending,
 }
-
-export const DayNote: string = "DayNote";
-export const MonthNote: string = "MonthNote";
-export const YearNote: string = "YearNote";

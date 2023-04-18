@@ -23,8 +23,8 @@ export default function Auth() {
       } else if (isLoginLogic) {
         setInvalidLoginData(true);
       } else if (!isLoginLogic) {
-        navigate(navigatePath);
         addUserToFirebase(name, password);
+        navigate(navigatePath);
       }
     }
   }

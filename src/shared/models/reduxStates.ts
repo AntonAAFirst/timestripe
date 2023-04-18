@@ -11,6 +11,7 @@ export interface ModalNoteProps {
 
 export interface NotesProps {
   notes: INote[];
+  filteredNotes: INote[];
   isLoading: boolean;
   selectedYear: number;
 }

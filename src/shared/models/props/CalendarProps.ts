@@ -1,14 +1,5 @@
 import { INote } from "../types";
 
-export interface CalendarNotesListProps {
-  filteredNotes: INote[];
-}
-
-export interface CalendarFilterOptionsProps {
-  filteringNotes: INote[];
-  setFilteringNotes: Function;
-}
-
 export interface CalendarNoteCardItemProps {
   note: INote;
 }

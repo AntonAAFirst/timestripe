@@ -4,18 +4,16 @@ import { getRandomBigInt } from "../helpers";
 import { IUser, cookieUserId } from "../models/types";
 
 export function addUserToFirebase(name: string, passsword: string) {
-  if (name.length >= 5 && passsword.length >= 8) {
-    const userId = getRandomBigInt();
+  const userId = getRandomBigInt();
 
-    Cookies.set(cookieUserId, userId.toString());
+  Cookies.set(cookieUserId, userId.toString());
 
-    defaultRequest.post("users.json", {
-      name: name,
-      password: passsword,
-      notes: [{ name: "nothing", id: 14 }],
-      id: userId,
-    });
-  }
+  defaultRequest.post("users.json", {
+    name: name,
+    password: passsword,
+    notes: [{ name: "nothing", id: 14 }],
+    id: userId,
+  });
 }
 
 export async function isLoginDataCorrect(

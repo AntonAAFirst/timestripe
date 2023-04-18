@@ -1,14 +1,16 @@
 import CalendarNoteCardItem from "./CalendarNoteCardItem";
-import { CalendarNotesListProps } from "../../shared/models/props/CalendarProps";
 import { CalendarNotesListContainer } from "../../shared/styles/CalendarStyles";
+import { useAppSelector } from "../../shared/store/hooks";
 
-export default function CalendarNotesList({
-  filteredNotes,
-}: CalendarNotesListProps) {
+export default function CalendarNotesList() {
+  const filteredReduxNotes = useAppSelector(
+    (state) => state.notes.filteredNotes
+  );
+
   return (
     <CalendarNotesListContainer>
-      {filteredNotes.map((note) => (
-        <CalendarNoteCardItem key={note.day} note={note} />
+      {filteredReduxNotes.map((note) => (
+        <CalendarNoteCardItem key={note.id} note={note} />
       ))}
     </CalendarNotesListContainer>
   );

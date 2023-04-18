@@ -52,7 +52,7 @@ export default function CalendarPage() {
         <Loader />
       ) : (
         <>
-          <Link to="../auth">
+          <Link to="../">
             <CalendarLogoutIcon onClick={logout} src={logoutIcon} />
           </Link>
           <CalendarInput />

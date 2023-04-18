@@ -19,7 +19,7 @@ export default function App() {
 
   return (
     <Routes>
-      <Route path="auth" element={<Auth />} />
+      <Route path="" element={<Auth />} />
       <Route path="/" element={<Layout />}>
         <Route path="calendar" element={<CalendarPage />} />
       </Route>

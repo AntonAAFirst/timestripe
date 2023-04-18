@@ -23,7 +23,7 @@ export default function Auth() {
       } else if (isLoginLogic) {
         setInvalidLoginData(true);
       } else if (!isLoginLogic) {
-        addUserToFirebase(name, password);
+        addUserToFirebase(name.toLowerCase(), password.toLowerCase());
         navigate(navigatePath);
       }
     }

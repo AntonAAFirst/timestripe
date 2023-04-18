@@ -14,6 +14,8 @@ export default function App() {
     const isLogin: string | undefined = Cookies.get(cookieUserId);
     if (isLogin === undefined) {
       navigate("/");
+    } else {
+      navigate("/calendar");
     }
   }, []);
 

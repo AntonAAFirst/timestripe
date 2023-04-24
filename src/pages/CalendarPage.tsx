@@ -3,17 +3,20 @@ import { getUsers, updateNotes } from "../shared/http";
 import { useEffect } from "react";
 import { newReduxNotes } from "../shared/store/reducers/notesReducer";
 import { getIntUserId } from "../shared/helpers";
-import { Loader } from "../shared/styles/LoaderStyles";
-import { IUser, cookieUserId } from "../shared/models/types";
 import { CalendarPageContainer } from "../shared/styles/LayoutStyle";
+import { IUser, cookieUserId } from "../shared/models/types";
+import {
+  CalendarLogoutIcon,
+  ClickMeLabel,
+} from "../shared/styles/CalendarStyles";
+import { Loader } from "../shared/styles/LoaderStyles";
+import { Link } from "react-router-dom";
 import CalendarNotesList from "../widgets/CalendarPage/CalendarNotesList";
 import CalendarInput from "../widgets/CalendarPage/CalendarInput";
 import Calendar from "../widgets/CalendarEntities/Calendar";
 import CalendarFilterOptions from "../widgets/CalendarPage/CalendarFilterOptions";
-import { CalendarLogoutIcon } from "../shared/styles/CalendarStyles";
 import logoutIcon from "../shared/images/logoutIcon.png";
 import Cookies from "js-cookie";
-import { Link } from "react-router-dom";
 
 export default function CalendarPage() {
   const dispatch = useAppDispatch();
@@ -21,7 +24,6 @@ export default function CalendarPage() {
     const users: IUser[] = await getUsers();
 
     for (let user in users) {
-      console.log("in calendar page - ", users[user]);
       if (users[user].id === getIntUserId()) {
         dispatch(newReduxNotes(users[user].notes));
       }
@@ -60,6 +62,7 @@ export default function CalendarPage() {
           <Link to="../">
             <CalendarLogoutIcon onClick={logout} src={logoutIcon} />
           </Link>
+          <ClickMeLabel />
           <CalendarInput />
           <Calendar />
           <CalendarFilterOptions />

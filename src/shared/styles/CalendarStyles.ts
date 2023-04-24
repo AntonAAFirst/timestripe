@@ -126,3 +126,16 @@ export const CalendarLogoutIcon = styled.img`
   top: 15px;
   cursor: pointer;
 `;
+
+export const ClickMeLabel = styled.div`
+  &:before {
+    position: absolute;
+    top: 60px;
+    left: 820px;
+    content: "Click me!!!";
+    color: white;
+    font-family: "Inter";
+    font-size: 21px;
+    transform: rotate(-20deg);
+  }
+`;

@@ -100,9 +100,8 @@ export default function ModalNote() {
   }
 
   window.addEventListener("keydown", (event) => {
-    if (event.key === "Escape") {
-      saveToRedux();
-      dispatch(closeModal());
+    if (event.key === "Escape" && reduxModalActive) {
+      buttonOkHandler();
     }
   });
 

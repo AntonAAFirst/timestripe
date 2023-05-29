@@ -11,6 +11,17 @@ React, Typescript, Redux Toolkit, Styled Components, Firebase
  - Поиск, фильтарция по текущему году, сортировка по убыванию и возрастанию
 
 
+____
+
+![Image alt](https://github.com/AntonAAFirst/timestripe/blob/main/readme-images/1.png)
+
+____
+
+![Image alt](https://github.com/AntonAAFirst/timestripe/blob/main/readme-images/2.png)
+
+____
+
+
 
 
 ## Установка
